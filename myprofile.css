@@ -1,0 +1,16 @@
+.profile-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+.logo-footer {
+    width: 24px;
+    height: 24px;
+}
+
+.photo-profile {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}

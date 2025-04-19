@@ -17,3 +17,12 @@
     color: rgb(255, 255, 255);
     font-size: 22px;
 }
+
+.logo-footer {
+    width: 24px;
+    height: 24px;
+}
+
+.text-footer {
+    color: white;
+}
