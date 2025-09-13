@@ -1,0 +1,256 @@
+/* Custom Animations and Styles */
+
+/* Loading Animations */
+@keyframes float {
+    0%, 100% { 
+        transform: translateY(0) rotate(0deg); 
+    }
+    33% { 
+        transform: translateY(-20px) rotate(1deg); 
+    }
+    66% { 
+        transform: translateY(-10px) rotate(-1deg); 
+    }
+}
+
+@keyframes borderPulse {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(34, 211, 238, 0.7), 0 0 0 0 rgba(251, 191, 36, 0.5);
+        border-width: 4px;
+    }
+    50% {
+        box-shadow: 0 0 20px 5px rgba(34, 211, 238, 0.4), 0 0 25px 8px rgba(251, 191, 36, 0.3);
+        border-width: 6px;
+    }
+}
+
+@keyframes gradient-x {
+    0%, 100% {
+        background-size: 200% 200%;
+        background-position: left center;
+    }
+    50% {
+        background-size: 200% 200%;
+        background-position: right center;
+    }
+}
+
+@keyframes fade-in-up {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes expand-width {
+    0% {
+        width: 0;
+    }
+    100% {
+        width: 100px;
+    }
+}
+
+@keyframes slideInRight {
+    0% {
+        opacity: 0;
+        transform: translateX(-50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideInLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes fadeUp {
+    0% {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom utility classes */
+.animate-float {
+    animation: float 6s ease-in-out infinite;
+}
+
+.animate-border-pulse {
+    animation: borderPulse 3s ease-in-out infinite;
+}
+
+.animate-gradient-x {
+    animation: gradient-x 4s ease infinite;
+}
+
+.animate-fade-in-up {
+    animation: fade-in-up 0.8s ease-out forwards;
+}
+
+.animate-expand-width {
+    animation: expand-width 1s ease-out forwards;
+}
+
+/* Loading animations */
+.loading-slide-right {
+    opacity: 0;
+    animation: slideInRight 1s ease-out 0.1s forwards;
+}
+
+.loading-slide-left {
+    opacity: 0;
+    animation: slideInLeft 1s ease-out 0.5s forwards;
+}
+
+.loading-fade-up {
+    opacity: 0;
+    animation: fadeUp 1s ease-out 0.3s forwards;
+}
+
+/* Animation delays */
+.animation-delay-200 {
+    animation-delay: 0.2s;
+}
+
+.animation-delay-500 {
+    animation-delay: 0.5s;
+}
+
+.animation-delay-700 {
+    animation-delay: 0.7s;
+}
+
+.animation-delay-900 {
+    animation-delay: 0.9s;
+}
+
+.animation-delay-1000 {
+    animation-delay: 1s;
+}
+
+/* Enhanced gradients */
+.bg-gradient-radial {
+    background: radial-gradient(var(--tw-gradient-stops));
+}
+
+/* Button shimmer effect */
+.shimmer-btn {
+    position: relative;
+    overflow: hidden;
+}
+
+.shimmer-btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    transition: left 0.5s;
+}
+
+.shimmer-btn:hover::before {
+    left: 100%;
+}
+
+/* Smooth transitions */
+* {
+    transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(15, 23, 42, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(34, 211, 238, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(34, 211, 238, 0.5);
+}
+
+/* Body styles */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+}
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+    .animate-float {
+        animation-duration: 4s;
+    }
+    
+    h1 {
+        font-size: 2.5rem !important;
+        line-height: 1.2;
+    }
+    
+    .floating-shape {
+        width: 80px !important;
+        height: 80px !important;
+    }
+}
+
+@media (max-width: 768px) {
+    .floating-shape.large {
+        width: 120px !important;
+        height: 120px !important;
+    }
+    
+    .floating-shape.medium {
+        width: 80px !important;
+        height: 80px !important;
+    }
+    
+    .floating-shape.small {
+        width: 60px !important;
+        height: 60px !important;
+    }
+}
+
+/* Accessibility - Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    .animate-float,
+    .animate-border-pulse,
+    .animate-gradient-x,
+    .animate-fade-in-up,
+    .animate-expand-width,
+    .loading-slide-right,
+    .loading-slide-left,
+    .loading-fade-up {
+        animation: none;
+    }
+    
+    * {
+        transition: none !important;
+    }
+}
