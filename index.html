@@ -5,56 +5,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portofolio Arjunior</title>
     
-    <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     
-    <!-- Custom Styles -->
-    <link rel="stylesheet" href="style.css">
-    
-    <!-- Tailwind Config -->
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     keyframes: {
                         'float': {
-                            '0%, 100%': { 
-                                transform: 'translateY(0) rotate(0deg)' 
-                            },
-                            '33%': { 
-                                transform: 'translateY(-20px) rotate(1deg)' 
-                            },
-                            '66%': { 
-                                transform: 'translateY(-10px) rotate(-1deg)' 
-                            }
+                            '0%, 100%': { transform: 'translateY(0) rotate(0deg)' },
+                            '33%': { transform: 'translateY(-20px) rotate(1deg)' },
+                            '66%': { transform: 'translateY(-10px) rotate(-1deg)' }
                         },
                         'gradient-x': {
-                            '0%, 100%': {
-                                backgroundSize: '200% 200%',
-                                backgroundPosition: 'left center'
-                            },
-                            '50%': {
-                                backgroundSize: '200% 200%',
-                                backgroundPosition: 'right center'
-                            }
+                            '0%, 100%': { backgroundSize: '200% 200%', backgroundPosition: 'left center' },
+                            '50%': { backgroundSize: '200% 200%', backgroundPosition: 'right center' }
                         },
                         'fade-in-up': {
-                            '0%': {
-                                opacity: '0',
-                                transform: 'translateY(30px)'
-                            },
-                            '100%': {
-                                opacity: '1',
-                                transform: 'translateY(0)'
-                            }
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' }
                         },
                         'expand-width': {
-                            '0%': {
-                                width: '0'
-                            },
-                            '100%': {
-                                width: '100px'
-                            }
+                            '0%': { width: '0' },
+                            '100%': { width: '100px' }
                         },
                         'border-pulse': {
                             '0%, 100%': {
@@ -81,22 +54,51 @@
             }
         }
     </script>
+    
+    <style type="text/css">
+      /* Custom utility classes (opsional, karena sudah ada di config) */
+      .animate-float { animation: float 6s ease-in-out infinite; }
+      .animate-border-pulse { animation: border-pulse 3s ease-in-out infinite; }
+      .animate-gradient-x { animation: gradient-x 4s ease infinite; }
+      .animate-fade-in-up { animation: fade-in-up 0.8s ease-out forwards; }
+      
+      /* Smooth transitions */
+      * {
+          transition: transform 0.3s ease, opacity 0.3s ease;
+      }
+
+      /* Custom scrollbar */
+      ::-webkit-scrollbar { width: 8px; }
+      ::-webkit-scrollbar-track { background: rgba(15, 23, 42, 0.1); }
+      ::-webkit-scrollbar-thumb { background: rgba(34, 211, 238, 0.3); border-radius: 4px; }
+      ::-webkit-scrollbar-thumb:hover { background: rgba(34, 211, 238, 0.5); }
+
+      /* Body styles */
+      body {
+          font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          overflow-x: hidden; /* Penting untuk mencegah scroll horizontal */
+      }
+
+      /* Accessibility - Reduce motion */
+      @media (prefers-reduced-motion: reduce) {
+          * {
+              animation: none !important;
+              transition: none !important;
+          }
+      }
+    </style>
+    
 </head>
 <body class="bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-900 min-h-screen overflow-hidden">
     
-    <!-- Background Elements -->
     <div class="absolute inset-0">
-        <!-- Animated gradient overlay -->
         <div class="absolute inset-0 bg-gradient-to-tr from-indigo-500/10 via-sky-500/15 to-cyan-400/10 animate-pulse"></div>
-        
-        <!-- Floating shapes container -->
         <div id="floating-shapes"></div>
-
-        <!-- Mouse follower effect -->
-        <div id="mouse-follower" class="absolute w-96 h-96 rounded-full bg-gradient-radial from-cyan-400/5 to-transparent pointer-events-none transition-all duration-300"></div>
+        <div id="mouse-follower" class="hidden md:block absolute w-96 h-96 rounded-full bg-gradient-radial from-cyan-400/5 to-transparent pointer-events-none transition-all duration-300"></div>
     </div>
 
-    <!-- Enhanced Wave Background -->
     <svg 
         class="absolute bottom-0 w-full h-32 md:h-40 lg:h-48 rotate-180 -z-10" 
         viewBox="0 0 1440 200" 
@@ -116,95 +118,168 @@
         />
     </svg>
 
-    <!-- Enhanced Header -->
-    <header class="absolute top-0 left-0 w-full flex justify-between items-center px-4 md:px-8 py-6 z-20">
-        <div class="text-white font-bold text-xl md:text-3xl lg:text-4xl transition-all duration-1000 loading-slide-right">
+    <header class="absolute top-0 left-0 w-full flex justify-between items-center px-4 sm:px-6 md:px-8 py-6 z-20">
+        <div class="text-white font-bold text-2xl md:text-3xl animate-fade-in-up">
             <span class="bg-gradient-to-r from-cyan-400 to-blue-400 bg-clip-text text-transparent">
                 MyWebsite
             </span>
         </div>
 
-        <div class="transition-all duration-1000 delay-500 loading-slide-left">
+        <div class="animate-fade-in-up animation-delay-200">
             <div class="relative group">
-                <div class="w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 rounded-full overflow-hidden border-4 border-gradient-to-r from-yellow-400 via-pink-400 to-cyan-400 animate-border-pulse group-hover:scale-110 transition-transform duration-300">
+                <div class="w-16 h-16 md:w-20 md:h-20 rounded-full overflow-hidden border-4 border-cyan-400 animate-border-pulse group-hover:scale-110 transition-transform duration-300">
                     <img 
                         src="./assets/images/grok_image_ccy22p.jpg" 
                         alt="Arjunior Avatar" 
                         loading="lazy" 
-                        class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                        class="w-full h-full object-cover"
                     />
                 </div>
-                <!-- Glow effect -->
                 <div class="absolute inset-0 rounded-full bg-gradient-to-r from-yellow-400/30 via-pink-400/30 to-cyan-400/30 blur-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
             </div>
         </div>
     </header>
 
-    <!-- Enhanced Main Content -->
-    <main class="relative z-30 flex flex-col items-center justify-center min-h-screen text-center text-white px-4 md:px-8">
-        <div class="transition-all duration-1000 delay-300 loading-fade-up">
-            <h1 class="text-4xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-6 leading-tight">
+    <main class="relative z-10 flex flex-col items-center justify-center min-h-screen text-center text-white px-4 sm:px-6">
+        <div class="animate-fade-in-up animation-delay-500">
+            <h1 class="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight">
                 <span class="block bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400 bg-clip-text text-transparent animate-gradient-x">
                     Welcome to
                 </span>
-                <span class="block bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x animation-delay-500">
+                <span class="block bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-gradient-x" style="animation-delay: 0.5s;">
                     My Portofolio
                 </span>
             </h1>
             
-            <div class="relative">
-                <p class="text-lg md:text-xl lg:text-2xl max-w-2xl mx-auto leading-relaxed text-slate-200 font-light">
-                    <span class="inline-block animate-fade-in-up">There's no such thing as failure,</span>
+            <div class="relative mt-4">
+                <p class="text-base sm:text-lg md:text-xl max-w-2xl mx-auto leading-relaxed text-slate-200 font-light">
+                    <span>There's no such thing as failure,</span>
                     <br class="hidden sm:block" />
-                    <span class="inline-block animate-fade-in-up animation-delay-200"> until you give up on doing it.</span>
+                    <span> until you give up on doing it.</span>
                 </p>
-                <!-- Underline effect -->
-                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 animate-expand-width animation-delay-1000"></div>
+                <div class="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-0.5 bg-gradient-to-r from-cyan-400 to-blue-400 animate-expand-width" style="animation-delay: 1s;"></div>
             </div>
 
-            <!-- Call to action buttons -->
-            <div class="mt-8 md:mt-12 flex flex-col sm:flex-row gap-4 justify-center items-center">
-                <button class="px-8 py-3 bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 rounded-full font-semibold text-white shadow-2xl shadow-cyan-500/25 hover:shadow-cyan-500/40 transform hover:scale-105 transition-all duration-300 animate-fade-in-up animation-delay-700 shimmer-btn">
+            <div class="mt-10 flex flex-col sm:flex-row gap-4 justify-center items-center">
+                <button class="px-8 py-3 w-full sm:w-auto bg-gradient-to-r from-cyan-500 to-blue-600 hover:from-cyan-600 hover:to-blue-700 rounded-full font-semibold text-white shadow-lg shadow-cyan-500/20 hover:shadow-cyan-500/30 transform hover:scale-105 transition-all duration-300">
                     Explore My Work
                 </button>
-                <button class="px-8 py-3 border-2 border-gradient-to-r from-indigo-400 to-purple-400 rounded-full font-semibold text-white hover:bg-gradient-to-r hover:from-indigo-500/20 hover:to-purple-500/20 transition-all duration-300 animate-fade-in-up animation-delay-900">
+                <button class="px-8 py-3 w-full sm:w-auto border-2 border-indigo-400 rounded-full font-semibold text-white hover:bg-indigo-500/20 transition-all duration-300">
                     Get In Touch
                 </button>
             </div>
         </div>
     </main>
 
-    <!-- Enhanced Navigation -->
-    <nav class="absolute bottom-6 md:bottom-8 left-1/2 transform -translate-x-1/2 z-30 transition-all duration-1000 delay-1000 loading-fade-up">
-        <div class="flex space-x-6 md:space-x-8 text-white text-sm md:text-base backdrop-blur-md bg-white/10 px-6 py-3 rounded-full border border-white/20 shadow-2xl">
-            <a 
-                href="./public/about-me/index.html" 
-                class="hover:text-cyan-400 transition-colors duration-300 relative group font-medium nav-link"
-            >
+    <nav class="absolute bottom-6 left-0 w-full flex justify-center z-30 animate-fade-in-up" style="animation-delay: 1.2s;">
+        <div class="flex space-x-4 md:space-x-6 text-white text-sm backdrop-blur-md bg-white/10 px-4 py-3 rounded-full border border-white/20 shadow-lg">
+            <a href="./public/about-me/index.html" class="hover:text-cyan-400 transition-colors duration-300 relative group font-medium">
                 Tentang Saya
                 <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
             </a>
-            <a 
-                href="#projects" 
-                class="hover:text-cyan-400 transition-colors duration-300 relative group font-medium nav-link"
-            >
+            <a href="#projects" class="hover:text-cyan-400 transition-colors duration-300 relative group font-medium">
                 Proyek
                 <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
             </a>
-            <a 
-                href="#contact" 
-                class="hover:text-cyan-400 transition-colors duration-300 relative group font-medium nav-link"
-            >
+            <a href="#contact" class="hover:text-cyan-400 transition-colors duration-300 relative group font-medium">
                 Kontak
                 <span class="absolute bottom-0 left-0 w-0 h-0.5 bg-cyan-400 group-hover:w-full transition-all duration-300"></span>
             </a>
         </div>
     </nav>
 
-    <!-- Floating particles -->
-    <div id="particles" class="absolute inset-0 overflow-hidden pointer-events-none"></div>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        
+        let mousePosition = { x: 0, y: 0 };
+        
+        initMouseFollower();
+        initFloatingShapes();
+        initFloatingParticles();
+        
+        function initMouseFollower() {
+            const mouseFollower = document.getElementById('mouse-follower');
+            if (!mouseFollower) return;
 
-    <!-- Load JavaScript -->
-    <script src="script.js"></script>
+            document.addEventListener('mousemove', (e) => {
+                mousePosition.x = e.clientX;
+                mousePosition.y = e.clientY;
+                
+                // Menggunakan transform untuk performa lebih baik
+                mouseFollower.style.transform = `translate(${mousePosition.x - 192}px, ${mousePosition.y - 192}px)`;
+            });
+        }
+        
+        function initFloatingShapes() {
+            const shapesContainer = document.getElementById('floating-shapes');
+            if (!shapesContainer) return;
+
+            const shapes = [
+                { 
+                    // Kelas ukuran responsif langsung di sini
+                    sizeClasses: 'w-20 h-20 md:w-32 md:h-40 lg:w-48 lg:h-48',
+                    color: 'bg-gradient-to-br from-cyan-400/20 to-blue-600/30', 
+                    ring: 'ring-2 ring-cyan-300/30', 
+                    shadow: 'shadow-2xl shadow-cyan-500/20', 
+                    delay: '0s',
+                    position: { top: '25%', left: '25%' }
+                },
+                { 
+                    sizeClasses: 'w-16 h-16 md:w-24 md:h-24 lg:w-32 lg:h-32',
+                    color: 'bg-gradient-to-br from-indigo-400/25 to-purple-600/35', 
+                    ring: 'ring-2 ring-indigo-300/40', 
+                    shadow: 'shadow-2xl shadow-indigo-500/25', 
+                    delay: '1s',
+                    position: { top: '75%', right: '25%' }
+                },
+                { 
+                    sizeClasses: 'w-12 h-12 md:w-20 md:h-20 lg:w-24 lg:h-24',
+                    color: 'bg-gradient-to-br from-sky-400/20 to-teal-600/30', 
+                    ring: 'ring-2 ring-sky-300/35', 
+                    shadow: 'shadow-2xl shadow-sky-500/20', 
+                    delay: '2s',
+                    position: { bottom: '25%', left: '33%' }
+                },
+            ];
+            
+            shapes.forEach((shape, index) => {
+                const div = document.createElement('div');
+                div.className = `
+                    absolute transform -translate-x-1/2 -translate-y-1/2
+                    ${shape.sizeClasses} ${shape.color} ${shape.ring} ${shape.shadow}
+                    rounded-full backdrop-blur-sm animate-float
+                    transition-all duration-1000 ease-out
+                `;
+                
+                Object.keys(shape.position).forEach(pos => {
+                    div.style[pos] = shape.position[pos];
+                });
+                
+                div.style.animationDelay = shape.delay;
+                div.style.animationDuration = `${6 + index * 2}s`;
+                
+                shapesContainer.appendChild(div);
+            });
+        }
+        
+        function initFloatingParticles() {
+            const particlesContainer = document.body; // Menempelkan ke body agar menyebar
+            
+            for (let i = 0; i < 20; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'absolute w-1 h-1 bg-white/20 rounded-full animate-float pointer-events-none';
+                
+                particle.style.left = Math.random() * 100 + 'vw';
+                particle.style.top = Math.random() * 100 + 'vh';
+                particle.style.animationDelay = Math.random() * 5 + 's';
+                particle.style.animationDuration = (4 + Math.random() * 5) + 's';
+                
+                particlesContainer.appendChild(particle);
+            }
+        }
+        
+        console.log('🚀 Portfolio initialized successfully!');
+    });
+    </script>
 </body>
 </html>
